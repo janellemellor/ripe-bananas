@@ -5,7 +5,7 @@ const chance = require('chance').Chance();
 module.exports = async({ studiosToCreate = 25 } = {}) => {
 
   await Studio.create([...Array(studiosToCreate)].map(() => ({
-    name: chance.sentence({ words: 1 }),
+    name: chance.company(),
     address: {
       city: chance.city(),
       state: chance.state(),
