@@ -44,6 +44,18 @@ describe('studio routes', () => {
         });
       });
   });
+
+  it('finds a studio by id', async() => {
+    const studio = await getStudio();
+    
+    return request(app)
+      .get(`/api/v1/studios/${studio._id}`)
+      .then(res => {
+        expect(res.body).toEqual(studio);
+      });
+  });
+
+
 });
 
         
