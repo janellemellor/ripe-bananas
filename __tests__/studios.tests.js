@@ -36,11 +36,20 @@ describe('studio routes', () => {
     return request(app)
       .get('/api/v1/studios')
       .then(res => {
-        expect(res.body).toEqual(studios);
+        studios.forEach(studio => {
+          expect(res.body).toContainEqual({
+            _id: studio._id,
+            name: studio.name
+          });
+        });
       });
   });
-
 });
+
+        
+ 
+
+
 
 //routes: 
 //POST
