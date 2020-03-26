@@ -1,4 +1,4 @@
-const Studio = require('../lib/models/Stuido');
+const Studio = require('../lib/models/Studio');
 
 const chance = require('chance').Chance();
 
