@@ -16,7 +16,7 @@ describe('actors routes', () => {
         expect(res.body).toEqual({
           _id: expect.any(String),
           name: 'Panda Bear',
-          dob: expect.any(Date), 
+          dob: expect.any(String), 
           pob: 'Canada',
           __v: 0
         });
