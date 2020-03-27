@@ -30,8 +30,19 @@ describe('films routes', () => {
             actor: actor._id }],
           __v: 0 
         });
-      });
-        
+      });   
   });
+ 
+  it('gets all films', async() => {
+    const films = await getFilms();
+
+    return request(app)
+      .get('/api/v1/films')
+      .then(res => {
+        expect(res.body).toEqual(films);
+      });
+  });
+
+
 });
     
