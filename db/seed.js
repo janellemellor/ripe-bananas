@@ -29,9 +29,9 @@ module.exports = async({ studiosToCreate = 15, actorsToCreate = 25, reviewersToC
 
   await Film.create([...Array(filmsToCreate)].map(() => ({
     title: chance.name(),
-    studio: chance.pickone(studios).name,
+    studio: chance.pickone(studios)._id,
     released: chance.year(),
-    cast: [...Array(5)].map(() => ({ role: chance.name(), actor: chance.pickone(actors).name }))
+    cast: [...Array(5)].map(() => ({ role: chance.name(), actor: chance.pickone(actors)._id }))
   })));
 
 };
