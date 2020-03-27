@@ -55,14 +55,24 @@ describe('reviewers routes', () => {
       });
   });
 
-  it('deletes a reviewer', async() => {
-    const reviewer = await getReviewer();
+  // it('deletes a reviewer if there are no reviews', async() => {
+  //   const reviewer = await getReviewer();
 
-    return request(app)
-      .delete(`/api/v1/reviewers/${reviewer._id}`)
-      .then(res => {
-        expect(res.body).toEqual(reviewer);
-      });
-  });
+  //   return request(app)
+  //     .delete(`/api/v1/reviewers/${reviewer._id}`)
+  //     .then(res => {
+  //       expect(res.body).toEqual(reviewer);
+  //     });
+  // });
+
+  // it('throws an error if a reviewer still has reviews', async() => {
+  //   const reviewer = await getReviewer();
+
+  //   return request(app)
+  //     .delete(`/api/v1/reviewers/${reviewer._id}`)
+  //     .then(res => {
+  //       expect(res.body).toEqual(reviewer);
+  //     });
+  // });
 
 });
