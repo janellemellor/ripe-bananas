@@ -53,12 +53,52 @@ describe('films routes', () => {
       });
   });
 
+  //   it('finds a film by id', async() => {
+  //     const film = await getFilm();
+    
+  //     return request(app)
+  //       .get(`/api/v1/films/${film._id}`)
+  //       .then(res => {
+  //         films.forEach(film => {
+  //             expect(res.body).toContainEqual(
+  //                 {
+  //                     _id: film._id,
+  //                     title: film.title,
+  //                     released: film.released,
+  //                     studio: { 
+  //                         _id: film.studio, 
+  //                         name: expect.any(String)
+  //                     },
+  //                     cast: [{
+  //                         _id: film.cast,
+  //                         role: film.cast.role,
+  //                         actor: { 
+  //                             _id: film.actor,
+  //                             name: film.actor.name 
+  //                         },
+  //                     }],
+  //                     reviews: [{
+  //                         id: ,
+  //                         rating: ,
+  //                         review: ,
+  //                         reviewer: { 
+  //                             _id: ,
+  //                             name: ,
+  //                          }
+  //                     }],
+  //                     __v: 0
+  //                 });
+  //             });
+
+
+
   it('finds a film by id', async() => {
     const film = await getFilm();
-    
+                        
     return request(app)
       .get(`/api/v1/films/${film._id}`)
       .then(res => {
+
         expect(res.body).toEqual(film);
       });
   });
