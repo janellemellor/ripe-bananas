@@ -55,4 +55,14 @@ describe('reviewers routes', () => {
       });
   });
 
+  it('deletes a reviewer', async() => {
+    const reviewer = await getReviewer();
+
+    return request(app)
+      .delete(`/api/v1/reviewers/${reviewer._id}`)
+      .then(res => {
+        expect(res.body).toEqual(reviewer);
+      });
+  });
+
 });
