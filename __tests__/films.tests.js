@@ -39,7 +39,18 @@ describe('films routes', () => {
     return request(app)
       .get('/api/v1/films')
       .then(res => {
-        expect(res.body).toEqual(films);
+        films.forEach(film => {
+          expect(res.body).toContainEqual({
+            _id: film._id,
+            title: film.title, 
+            released: film.released, 
+            studio: { 
+              _id: film.studio,
+              name: expect.any(String)
+            }
+          });
+        });   
+       
       });
   });
 
