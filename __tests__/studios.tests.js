@@ -59,11 +59,3 @@ describe('studio routes', () => {
 });
 
         
- 
-
-
-
-//routes: 
-//POST
-//GET ALL
-//GET By ID
