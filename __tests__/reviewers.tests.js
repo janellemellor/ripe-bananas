@@ -41,4 +41,18 @@ describe('reviewers routes', () => {
       });
   });
 
+  it('updates a reviewer', async() => {
+    const reviewer = await getReviewer();
+
+    return request(app)
+      .patch(`/api/v1/reviewers/${reviewer._id}`)
+      .send({ name: 'Bill Nye' })
+      .then(res => {
+        expect(res.body).toEqual({
+          ...reviewer, 
+          name: 'Bill Nye'
+        });
+      });
+  });
+
 });
