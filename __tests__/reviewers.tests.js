@@ -31,4 +31,14 @@ describe('reviewers routes', () => {
       });
   });
 
+  it('finds a reviewer by id', async() => {
+    const reviewer = await getReviewer();
+    
+    return request(app)
+      .get(`/api/v1/reviewers/${reviewer._id}`)
+      .then(res => {
+        expect(res.body).toEqual(reviewer);
+      });
+  });
+
 });
