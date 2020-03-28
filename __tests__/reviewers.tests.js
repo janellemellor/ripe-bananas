@@ -43,15 +43,26 @@ describe('reviewers routes', () => {
 
   it('finds a reviewer by id', async() => {
     const reviewer = await getReviewer();
+    const reviews = await getReviews();
+    const films = await getFilms();
     
     return request(app)
-      .get(`/api/v1/reviews/${reviewer._id}`)
+      .get(`/api/v1/reviewers/${reviewer._id}`)
       .then(res => {
         expect(res.body).toEqual({
           _id: reviewer._id,
           name: reviewer.name,
           company: reviewer.company,
-          reviews: expect.any(Array),
+          reviews: reviews.map(review => ({
+            _id: review._id,
+            rating: review.rating,
+            review: review.review, 
+            film: {
+              _id: review.film,
+              title: films.title,
+            },
+          })),
+          __v: 0
         });
       });
   });
