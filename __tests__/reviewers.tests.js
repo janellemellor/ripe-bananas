@@ -1,4 +1,4 @@
-const { getReviewer, getReviewers } = require('../db/data-helpers');
+const { getReviewer, getReviewers, getReviews, getFilms } = require('../db/data-helpers');
 
 const request = require('supertest');
 const app = require('../lib/app');
@@ -31,13 +31,28 @@ describe('reviewers routes', () => {
       });
   });
 
+  // it('finds a reviewer by id', async() => {
+  //   const reviewer = await getReviewer();
+    
+  //   return request(app)
+  //     .get(`/api/v1/reviewers/${reviewer._id}`)
+  //     .then(res => {
+  //       expect(res.body).toEqual(reviewer);
+  //     });
+  // });
+
   it('finds a reviewer by id', async() => {
     const reviewer = await getReviewer();
     
     return request(app)
-      .get(`/api/v1/reviewers/${reviewer._id}`)
+      .get(`/api/v1/reviews/${reviewer._id}`)
       .then(res => {
-        expect(res.body).toEqual(reviewer);
+        expect(res.body).toEqual({
+          _id: reviewer._id,
+          name: reviewer.name,
+          company: reviewer.company,
+          reviews: expect.any(Array),
+        });
       });
   });
 
