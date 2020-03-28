@@ -44,9 +44,14 @@ describe('actors routes', () => {
     return request(app)
       .get(`/api/v1/actors/${actor._id}`)
       .then(res => {
-        expect(res.body).toEqual(actor);
+        expect(res.body).toEqual({
+          _id: actor._id,
+          name: actor.name,
+          dob: actor.dob,
+          pob: actor.pob,
+          films: expect.any(Array)
+        });
       });
   });
-
   
 });
