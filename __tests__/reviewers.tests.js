@@ -31,19 +31,9 @@ describe('reviewers routes', () => {
       });
   });
 
-  // it('finds a reviewer by id', async() => {
-  //   const reviewer = await getReviewer();
-    
-  //   return request(app)
-  //     .get(`/api/v1/reviewers/${reviewer._id}`)
-  //     .then(res => {
-  //       expect(res.body).toEqual(reviewer);
-  //     });
-  // });
-
   it('finds a reviewer by id', async() => {
     const reviewer = await getReviewer();
-    const reviews = await getReviews();
+    const reviews = await getReviews({ 'reviewer': reviewer._id });
     const films = await getFilms();
     
     return request(app)
@@ -53,16 +43,17 @@ describe('reviewers routes', () => {
           _id: reviewer._id,
           name: reviewer.name,
           company: reviewer.company,
+          __v: 0,
           reviews: reviews.map(review => ({
             _id: review._id,
             rating: review.rating,
             review: review.review, 
+            reviewer: expect.any(String),
             film: {
               _id: review.film,
-              title: films.title,
+              title: films.find(film => film._id === review.film).title
             },
           })),
-          __v: 0
         });
       });
   });
