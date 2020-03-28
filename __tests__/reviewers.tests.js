@@ -72,15 +72,26 @@ describe('reviewers routes', () => {
       });
   });
 
-  // it('deletes a reviewer if there are no reviews', async() => {
-  //   const reviewer = await getReviewer();
-
-  //   return request(app)
-  //     .delete(`/api/v1/reviewers/${reviewer._id}`)
-  //     .then(res => {
-  //       expect(res.body).toEqual(reviewer);
-  //     });
-  // });
+  it('deletes a reviewer if there are no reviews', async() => {
+    return request(app)
+      .post('/api/v1/reviewers')
+      .send({
+        name: 'Roger Ebert',
+        company: 'THE company'
+      })
+      .then(reviewer => {
+        return request(app)
+          .delete(`/api/v1/reviewers/${reviewer.body._id}`);
+      })
+      .then(res => {
+        expect(res.body).toEqual({
+          _id: expect.any(String),
+          name: 'Roger Ebert',
+          company: 'THE company',
+          __v: 0
+        });
+      });
+  });
 
   // it('throws an error if a reviewer still has reviews', async() => {
   //   const reviewer = await getReviewer();
